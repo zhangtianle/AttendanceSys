@@ -3,48 +3,21 @@
 	"text":"考勤后台管理",
 	"children":[{
 		"id":11,
-		"text":"Photos",
+		"text":"打卡信息管理",
 		"children":[{
 			"id":111,
-			"text":"Friend"
-		},
-		{
-			"id":112,
-			"text":"Wife"
-		},{
-			"id":113,
-			"text":"Company"
+			"text":"预留"
 		}]
-},
-{
+	},
+    {
 	"id":12,
-	"text":"Program Files",
+	"text":"学生信息管理",
 	"children":[{
 		"id":121,
-		"text":"Intel"
-		},{
-			"id":122,
-			"text":"Java",
-			"attributes":{
-				"p1":"Custom Attribute1",
-				"p2":"Custom Attribute2"
-			}
-		},{
-			"id":123,
-			"text":"Microsoft Office"
-		},{
-			"id":124,
-			"text":"Games",
-			"checked":true
+		"text":"预留"
 		}]
 	},{
 		"id":13,
-		"text":"index.html"
-	},{
-		"id":14,
-		"text":"about.html"
-	},{
-		"id":15,
-		"text":"welcome.html"
+		"text":"注销"
 	}]
 }]

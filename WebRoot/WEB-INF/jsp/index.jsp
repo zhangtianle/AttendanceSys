@@ -40,9 +40,14 @@ $(function() {
 		   if ($('#frame').tabs('exists',node.text)) {
                $('#frame').tabs('select', node.text);
            } else {
+        	   url = "";
         	   //switch tabs
-        	   //url=
-        	    var content = '<iframe scrolling="auto" frameborder="0"  src="MyJsp.jsp" style="width:100%;height:100%;"></iframe>';    
+        	   if(node.text=="考勤后台管理") url="MyJsp";
+        	   if(node.text=="") url="MyJsp";
+        	   if(node.text=="") url="MyJsp";
+        	   if(node.text=="") url="MyJsp";
+        	   if(url=="") return;
+        	    var content = '<iframe scrolling="auto" frameborder="0"  src="'+url+'.jsp" style="width:100%;height:100%;"></iframe>';    
 		$('#frame').tabs('add',{
 			title: node.text,
 			selected: true,
@@ -75,54 +80,21 @@ $(function() {
 		<div data-options="region:'north'"
 			style="height:30px;line-height:25px;color:#E7E7E7;font-size:14px;padding-left:35px;
       		border-top:1px solid #1D438B;background:url('image/top.jpg') repeat-x bottom;">考勤系统</div>
+		
 		<!-- left -->
-		<div data-options="region:'west',split:false" title="West"
-			style="width:15%;height:100%;">
-
-			<!-- tree -->
-			<!-- 
-			<div class="easyui-panel" style="padding:5px">
-				<ul class="easyui-tree">
-					<li><span>后台管理</span>
-						<ul>
-							<li data-options="state:'closed'"><span>Photos</span>
-								<ul>
-									<li><span>Friend</span></li>
-									<li><span>Wife</span></li>
-									<li><span>Company</span></li>
-								</ul></li>
-							<li><span>Program Files</span>
-								<ul>
-									<li>Intel</li>
-									<li>Java</li>
-									<li>Microsoft Office</li>
-									<li>Games</li>
-								</ul></li>
-							<li>index.html</li>
-							<li>about.html</li>
-							<li>welcome.html</li>
-						</ul></li>
-				</ul>
-			</div> -->
+		<div data-options="region:'west',split:false"  style="width:15%;height:100%;">
 			<div class="easyui-panel" style="height:100%">
-		  <ul id="tree" class="easyui-tree" data-options="method:'get',animate:true,lines:true"></ul>
-	    </div>
+		      <ul id="tree" class="easyui-tree" data-options="method:'get',animate:true,lines:true"></ul>
+	        </div>
 		</div>
 
 		<!-- main -->
-
 		<div data-options="region:'center'" style="width:85%;height:100%;">
 		
 		<!-- tabs -->
-
 			<div id="frame" class="easyui-tabs" style="width:100%;height:100%">
-			<div  title="我的主页" style="background-repeat:no-repeat;
-			background-color:rgb(43,110,154);background-position: 150px 150px;height:100%;width:100%">
-			123
-			123
-			123
-			123
-			123
+			<div title="我的主页" >
+			<iframe style="background:url('image/index.jpg') no-repeat;background-position: 400px 150px;background-color:rgb(43,110,154);height:100%;width:100%"></iframe>
 			</div>
 			</div>
 			
