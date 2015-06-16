@@ -32,17 +32,26 @@ $(function() {
 	//tree setting
 	$('#tree').tree({
 		url:'tree_data.json',
-		onSelect: addTab
+		onSelect: addTab,
 		
     })
 
     function addTab(node){
+		   if ($('#frame').tabs('exists',node.text)) {
+               $('#frame').tabs('select', node.text);
+           } else {
+        	   //switch tabs
+        	   //url=
+        	    var content = '<iframe scrolling="auto" frameborder="0"  src="MyJsp.jsp" style="width:100%;height:100%;"></iframe>';    
 		$('#frame').tabs('add',{
 			title: node.text,
 			selected: true,
 			closable:true,
-		});
+			content:content
+
 		
+		});
+          }
 	}
 	
 	$('#frame').tabs({
@@ -106,15 +115,24 @@ $(function() {
 		
 		<!-- tabs -->
 
-			<div id="frame" class="easyui-tabs" style="width:100%;height:100%"></div>
+			<div id="frame" class="easyui-tabs" style="width:100%;height:100%">
+			<div  title="我的主页" style="background-repeat:no-repeat;
+			background-color:rgb(43,110,154);background-position: 150px 150px;height:100%;width:100%">
+			123
+			123
+			123
+			123
+			123
+			</div>
+			</div>
 			
 		</div>
 		
 
-<!-- footer -->
-		<div data-options="region:'south',split:false" style="height:50px;">
+        <!-- footer -->
+		<div data-options="region:'south',split:false" style="height:50px;text-align:center" >
 		<P>
-			<br />Copy Right@2014 睿廓思工作室
+			<br />Copy Right@2015  睿廓思工作室
 		</P>
 		</div>	
 		
