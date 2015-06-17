@@ -4,9 +4,16 @@
 
 <mapper namespace="as.model.Mapper">
 
+    <!-- 通过username获得密码 -->
     <select id="getpwd" parameterType="String" resultType="String">
       select password from user where username=#{username}
-</select>
+    </select>
+    
+    <!-- 获取学生名单 -->
+    <select id="getStulist" parameterType="String" resultType="as.model.Student">
+      select name,cardID from stuinfo
+    </select>
+
 
 </mapper>
 

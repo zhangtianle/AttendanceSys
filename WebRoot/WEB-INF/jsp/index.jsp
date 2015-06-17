@@ -42,12 +42,12 @@ $(function() {
            } else {
         	   url = "";
         	   //switch tabs
-        	   if(node.text=="考勤后台管理") url="MyJsp";
-        	   if(node.text=="") url="MyJsp";
+        	   if(node.text=="考勤后台管理") return ;
+        	   if(node.text=="学生信息管理") url="stulist";
         	   if(node.text=="") url="MyJsp";
         	   if(node.text=="") url="MyJsp";
         	   if(url=="") return;
-        	    var content = '<iframe scrolling="auto" frameborder="0"  src="'+url+'.jsp" style="width:100%;height:100%;"></iframe>';    
+        	    var content = '<iframe scrolling="auto" frameborder="0"  src="'+url+'.do" style="width:100%;height:100%;"></iframe>';    
 		$('#frame').tabs('add',{
 			title: node.text,
 			selected: true,
@@ -94,7 +94,7 @@ $(function() {
 		<!-- tabs -->
 			<div id="frame" class="easyui-tabs" style="width:100%;height:100%">
 			<div title="我的主页" >
-			<iframe style="background:url('image/index.jpg') no-repeat;background-position: 400px 150px;background-color:rgb(43,110,154);height:100%;width:100%"></iframe>
+			<iframe style="background:url('image/index.jpg') no-repeat;background-position: 400px 150px;background-color:rgb(43,110,154);height:99%;width:100%"></iframe>
 			</div>
 			</div>
 			
@@ -104,7 +104,7 @@ $(function() {
         <!-- footer -->
 		<div data-options="region:'south',split:false" style="height:50px;text-align:center" >
 		<P>
-			<br />Copy Right@2015  睿廓思工作室
+			Copy Right@2015  睿廓思工作室
 		</P>
 		</div>	
 		
