@@ -28,52 +28,63 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script type="text/javascript"
 	src="js/jquery-easyui-1.4.2/jquery.easyui.min.js"></script>
   </head>
-  <script type="text/javascript">
+	
+  
+  <body style="width:100%;height:98%;margin:0">
+  <table id="dg" class="easyui-datagrid" title="Custom DataGrid Pager" style="width:100%;height:97%"
+			data-options="singleSelect:true,pagination:true,method:'get'">
+			
+			<thead>
+			<tr>
+				<th data-options="field:'name',width:80">姓名</th>
+				<th data-options="field:'cardID',width:100">卡号</th>
+				<th data-options="field:'op',width:80,align:'right'">操作</th>
+				
+			</tr>
+		</thead>
+	</table>	
+	  <script type="text/javascript">
       
   $(function(){
-		  
-  $('#dg').datagrid({
-	  
-  		//url:'getstuinfo.do',
-  		url:datagrid_data1.json,
-        /*columns:[[
-            {field:'name',title:'Name',width:100},
-            {field:'cardID',title:'CardID',width:100,align:'right'},
-            {field:'op',title:'操作',width:100,align:'right'}
-        ]]*/
-        columns:[[
-  		{field:'itemid',width:80,title:'Item ID'}
-		]]
-    });
-  
-  var pager = $('#dg').datagrid().datagrid('getPager');	// get the pager of datagrid
-	pager.pagination({
-		buttons:[{
-			iconCls:'icon-search',
-			handler:function(){
-				alert('search');
-			}
-		},{
-			iconCls:'icon-add',
-			handler:function(){
-				alert('add');
-			}
-		},{
-			iconCls:'icon-edit',
-			handler:function(){
-				alert('edit');
-			}
-		}]
-	});		
+	    
+	    $('#dg').datagrid({
+	        url:'getstuinfo.do',
+	        pagination: true,
+	        rownumbers: true,
+	        pageNumber:1,
+	        columns: [[
+	                   { field: 'name', title: '姓名', width: 100 },
+	                   { field: 'cardID', title: '卡号', width: 100 },
+	                   { field: 'op', title: '操作', width: 100 },
+	                  ]], 
+	        pageSize:10,
+	        pageList: [5,10,15,20],
+	        
+	   });
 
+	    var p = $('#dg').datagrid('getPager');
+	    $(p).pagination({
+	        beforePageText: '第',//页数文本框前显示的汉字 
+	        afterPageText: '页    共 {pages} 页',
+	        displayMsg: '共{total}条数据',
+	    }); 
+	    
+     
+	    $('#dg').datagrid({
+	    	columns: [[
+	                   { field: 'name', title: '姓名', width: 100 },
+	                   { field: 'cardID', title: '卡号', width: 100 },
+	                   { field: 'op', title: '操作', width: 100 },
+	                  ]]
+	    	}
+	    );
+        dg.datagrid('getPager').pagination({
+            layout:['list','sep','first','prev','sep',$('#p-style').val(),'sep','next','last','sep','refresh']
+        });
+ 
   })
  </script>
   
 	
-  
-  <body style="width:100%;height:98%;margin:0">
-			<table id="dg" class="easyui-datagrid" title="Basic DataGrid" style="width:100%;height:100%;
-			data-options="rownumbers:true,singleSelect:true,pagination:true,method:'get'">		
-	</table>	
   </body>
 </html>

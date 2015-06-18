@@ -9,11 +9,16 @@
       select password from user where username=#{username}
     </select>
     
-    <!-- 获取学生名单 -->
-    <select id="getStulist" parameterType="String" resultType="as.model.Student">
-      select name,cardID from stuinfo
+    <!-- 获取学生范围内名单 -->
+    <select id="getStulist"  resultType="as.model.Student">
+      select name,cardID from stuinfo limit #{begin},#{end}
+    </select>
+    
+    <!-- 获取学生总数-->
+    <select id="getTotalNum"  resultType="int">
+      select count(*) from stuinfo,card where stuinfo.cardID=card.cardID AND card.check = 0
     </select>
 
-
+ 
 </mapper>
 
