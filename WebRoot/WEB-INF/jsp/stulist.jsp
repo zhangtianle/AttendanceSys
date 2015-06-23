@@ -117,8 +117,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         	d  = d+''+str.substr(l+1, 1);      		
       	
       	}
-      	//var name = name:rows[i].name;
-      	//var cardID = 
+      	
       	var stu ={"name":rows[i].name,"cardID":rows[i].cardID,"id":d};
       	stus.push(stu);
       	

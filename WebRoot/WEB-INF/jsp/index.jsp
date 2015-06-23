@@ -71,7 +71,7 @@ $(function() {
 </head>
 
 
-<body style="margin:0">
+<body style="margin:0;height:100%">
 
 	<!--layout-->
 	<div class="easyui-layout" style="width:100%;height:100%;">
@@ -93,12 +93,11 @@ $(function() {
 		
 		<!-- tabs -->
 			<div id="frame"  style="width:100%;height:100%">
-			<div title="我的主页" >
-			<iframe style="background:url('image/index.jpg') no-repeat;background-position: 250px 200px;background-color:rgb(43,110,154);height:99%;width:100%"></iframe>
+			<div title="我的主页" style="width:100%;height:100%">
+			<iframe style="background:url('image/index.jpg') no-repeat;background-position: 250px 200px;background-color:rgb(43,110,154);height:100%;width:100%"></iframe>
 			</div>
 			</div>
-			
-		</div>
+			</div>
 		
 
         <!-- footer -->

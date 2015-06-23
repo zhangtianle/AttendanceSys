@@ -6,6 +6,7 @@ package as.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.*;
 
 import javax.servlet.http.*;
@@ -21,13 +22,13 @@ import as.model.*;
 @Controller
 public class MainController{
 	@RequestMapping("login.do")
-	public String c() {
+	public String gtLogin() {
 		return "login";
 	}
 	
 	//登陆
 	@RequestMapping("index.do")
-	public String index(@RequestParam("username") String username,
+	public String login(@RequestParam("username") String username,
 			@RequestParam("password") String pwd,Model model)
 	{
 		LoginService ls = new LoginService();
@@ -43,7 +44,7 @@ public class MainController{
 	
 	//跳转到学生名单界面
 		@RequestMapping("stulist.do")
-		public String stulist(Model model){
+		public String gtstulist(Model model){
 			
 			return "stulist";
 		}
@@ -61,12 +62,18 @@ public class MainController{
 			return ss.getStulist(page,rows);
 		}
 	
-		//跳转到管理学生界面
-		@RequestMapping("manager.do")
-		public String stuMan(String stuId,Model model){
+		//跳转到更新学生界面
+		@RequestMapping("gtupdate.do")
+		public String gtstuUpdate(String stuId,Model model){
 			StuService ss = new StuService();
 			model.addAttribute("stu",ss.getStuInfo(stuId));
-			return "manager";
+			return "updateStu";
+		}
+		
+		//更新学生信息
+		@RequestMapping("update.do")
+		public String stuUpdate(){
+			return "updateStu";
 		}
 		
 		//删除一个学生
@@ -87,7 +94,9 @@ public class MainController{
 			return "stulist";
 		}
 		
-		public String addStu(){
+		
+		//跳转到添加学生页面
+		public String gtaddStu(){
 			
 			return "addStu";
 		}
@@ -104,17 +113,28 @@ public class MainController{
 		
 		//接收读卡器参数
 		@RequestMapping(value="att.do",method=RequestMethod.POST)
-		 public void listAll1(HttpServletRequest request,HttpServletResponse response) throws IOException {
-			System.out.println(request.getParameter("interId"));
+		 public void getAttSign(HttpServletResponse response) throws IOException {
 			response.setCharacterEncoding("utf-8");
 			PrintWriter pw= response.getWriter();
 			pw.write("1;成功");
 			pw.close();
 		}
 		
-		
-		
-
+		//跳转到短信编辑
+		@RequestMapping("msg.do")
+		public String gotoMsg(Model model){
+			MsgService ms = new MsgService(); 
+			model.addAttribute("msg",ms.getMsg());
+			return "msg";
+		}
+		//短信编辑
+		@RequestMapping("msgUpdate.do")
+		public String msgupdate(@RequestBody String msg){
+			
+			System.out.println(msg);
+		//	System.out.println(java.net.URLDecoder.decode(msg,"UTF-8"));
+			return "msg";
+		}
 			
 	//	}
 //		

@@ -24,6 +24,8 @@ public interface Mapper {
 	
 	public  List<Student> getSearchResult(@Param(value="name")String name,@Param(value="cardID")String cardID);
 	
+	public String getMsg();
+	
 
 
 

@@ -27,7 +27,7 @@ public class StuService {
 			Student stu = (Student)it.next();
 			map.put("name",stu.getName());
 			map.put("cardID",stu.getCardID());
-			map.put("op", "<a href=\"manager.do?stuId="+stu.getId()+ "\">修改</a>"
+			map.put("op", "<a href=\"gtupdate.do?stuId="+stu.getId()+ "\">修改</a>"
 			       +"&nbsp;&nbsp;<a href=\"del.do?stuId="+stu.getId()+ " \" onclick=\"return delcfm();\">删除</a>");
 			rows.add(map);
 		}
@@ -52,7 +52,7 @@ public class StuService {
 			Student stu = (Student)it.next();
 			map.put("name",stu.getName());
 			map.put("cardID",stu.getCardID());
-			map.put("op", "<a href=\"manager.do?stuId="+stu.getId()+ "\">修改</a>"
+			map.put("op", "<a href=\"gtupdate.do?stuId="+stu.getId()+ "\">修改</a>"
 			       +"&nbsp;&nbsp;<a href=\"del.do?stuId="+stu.getId()+ " \" onclick=\"return delcfm();\">删除</a>");
 			rows.add(map);
 			total++;

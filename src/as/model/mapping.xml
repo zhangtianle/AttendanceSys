@@ -41,6 +41,10 @@
 	  </where> 
 	
 		</select>
+	<!-- 获取短信内容 -->
+	<select id="getMsg" resultType="String">
+	select msg from msg where id=1
+	</select>
 	
 	<!-- 
 		
