@@ -44,8 +44,8 @@ $(function() {
         	   //switch tabs
         	   if(node.text=="考勤后台管理") return ;
         	   if(node.text=="学生信息管理") url="stulist";
-        	   if(node.text=="") url="MyJsp";
-        	   if(node.text=="") url="MyJsp";
+        	   if(node.text=="打卡信息管理") url="attinfo";
+        	   if(node.text=="短信编辑") url="msg";
         	   if(url=="") return;
         	    var content = '<iframe scrolling="auto" frameborder="0"  src="'+url+'.do" style="width:100%;height:100%;"></iframe>';    
 		$('#frame').tabs('add',{
@@ -84,7 +84,7 @@ $(function() {
 		<!-- left -->
 		<div data-options="region:'west',split:false"  style="width:15%;height:100%;">
 			<div class="easyui-panel" style="height:100%">
-		      <ul id="tree" class="easyui-tree" data-options="method:'get',animate:true,lines:true"></ul>
+		      <ul id="tree"  data-options="method:'get',animate:true,lines:true"></ul>
 	        </div>
 		</div>
 
@@ -92,9 +92,9 @@ $(function() {
 		<div data-options="region:'center'" style="width:85%;height:100%;">
 		
 		<!-- tabs -->
-			<div id="frame" class="easyui-tabs" style="width:100%;height:100%">
+			<div id="frame"  style="width:100%;height:100%">
 			<div title="我的主页" >
-			<iframe style="background:url('image/index.jpg') no-repeat;background-position: 400px 150px;background-color:rgb(43,110,154);height:99%;width:100%"></iframe>
+			<iframe style="background:url('image/index.jpg') no-repeat;background-position: 250px 200px;background-color:rgb(43,110,154);height:99%;width:100%"></iframe>
 			</div>
 			</div>
 			
@@ -102,7 +102,7 @@ $(function() {
 		
 
         <!-- footer -->
-		<div data-options="region:'south',split:false" style="height:50px;text-align:center" >
+		<div data-options="region:'south',split:false" style="height:50px;text-align:center"  >
 		<P>
 			Copy Right@2015  睿廓思工作室
 		</P>

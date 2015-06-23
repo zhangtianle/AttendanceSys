@@ -4,15 +4,18 @@ package as.controller;
  */
 
 
-import java.util.Map;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.*;
 
-
+import javax.servlet.http.*;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import as.service.*;
+import as.model.*;
 
 
 @Controller
@@ -41,16 +44,85 @@ public class MainController{
 	//跳转到学生名单界面
 		@RequestMapping("stulist.do")
 		public String stulist(Model model){
+			
 			return "stulist";
 		}
 		
     //请求学生名单，返回json
 		@RequestMapping("getstuinfo.do")
 		@ResponseBody
-		public Map<Object, Object> ss(@RequestParam String page,@RequestParam String rows){
-			System.out.println(page+rows);
+		public Map<Object, Object> getStuList(String page,String rows,
+				@RequestParam(value="name", defaultValue="")String name,
+				@RequestParam(value="cardID", defaultValue="")String cardID) {
 			StuService ss = new StuService();
+			if(!name.equals("") || !cardID.equals("")) {
+				return ss.getSearchResult(name,cardID);
+			}
 			return ss.getStulist(page,rows);
 		}
 	
+		//跳转到管理学生界面
+		@RequestMapping("manager.do")
+		public String stuMan(String stuId,Model model){
+			StuService ss = new StuService();
+			model.addAttribute("stu",ss.getStuInfo(stuId));
+			return "manager";
+		}
+		
+		//删除一个学生
+		@RequestMapping("del.do")
+		public String stuDel(String stuId){
+			StuService ss = new StuService();
+			ss.stuDel(stuId);
+			return "stulist";
+		}
+		
+		//批量删除学生
+		@RequestMapping("dels.do")
+		
+		public String stusDel(@RequestBody Student[] stus){
+			
+			StuService ss = new StuService();
+			ss.stusDel(stus);
+			return "stulist";
+		}
+		
+		public String addStu(){
+			
+			return "addStu";
+		}
+		
+		/*@RequestMapping("att.do")
+		@ResponseBody
+		public String test(@RequestBody String interId,@RequestBody String cardId){
+			System.out.println(interId);
+			System.out.println(cardId);
+			String str = "1;成功";
+		    //new String(str,)
+			return str;
+		}*/
+		
+		//接收读卡器参数
+		@RequestMapping(value="att.do",method=RequestMethod.POST)
+		 public void listAll1(HttpServletRequest request,HttpServletResponse response) throws IOException {
+			System.out.println(request.getParameter("interId"));
+			response.setCharacterEncoding("utf-8");
+			PrintWriter pw= response.getWriter();
+			pw.write("1;成功");
+			pw.close();
+		}
+		
+		
+		
+
+			
+	//	}
+//		
+//		//打卡信息
+//		@RequestMapping("attinfo.do")
+//		public String getAttInfo(){
+//			System.out.println("att");
+//			StuService ss = new StuService();
+//			return "MyJsp";
+//		}
 }

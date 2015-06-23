@@ -11,14 +11,47 @@
     
     <!-- 获取学生范围内名单 -->
     <select id="getStulist"  resultType="as.model.Student">
-      select name,cardID from stuinfo limit #{begin},#{end}
+      select * from stuinfo limit #{begin},#{num}
     </select>
     
     <!-- 获取学生总数-->
     <select id="getTotalNum"  resultType="int">
-      select count(*) from stuinfo,card where stuinfo.cardID=card.cardID AND card.check = 0
+      select count(*) from stuinfo  
     </select>
 
- 
+    <!-- 获取学生信息-->
+    <select id="getStuInfo"   resultType="as.model.Student">
+      select * from stuinfo where id=#{stuId} 
+    </select>
+  
+  	<!-- 删除 -->
+    <delete id="stuDel">
+	  delete from stuinfo where id = #{stuId}
+	</delete>
+	<!-- 搜索结果 -->
+	<select id="getSearchResult" resultType="as.model.Student">
+	  select * from stuinfo 
+	  <where>
+	  <if test="name != null">
+	  name like  CONCAT('%',#{name},'%') 
+	  </if>
+	  <if test="cardID != null">
+	  and cardID like CONCAT('%',#{cardID},'%') 
+	  </if>
+	  </where> 
+	
+		</select>
+	
+	<!-- 
+		
+	<insert id="stuDel" parameterType="int">
+	insert into stuinfo (name) values (#{stuId})
+  </insert>
+    
+   
+   <update id="cardCheck">
+     update cardinfo set imgUrl=#{imgUrl} where articleId=#{articleId}
+   </update>
+   -->
 </mapper>
 

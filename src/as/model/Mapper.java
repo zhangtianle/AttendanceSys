@@ -14,10 +14,17 @@ public interface Mapper {
 	
 	public String getpwd(String username);
 	
-	public List<Student> getStulist(@Param(value="begin") int begin,@Param(value="end") int end);
+	public List<Student> getStulist(@Param(value="begin") int begin,@Param(value="num") int num);
 	
 	public int getTotalNum();
-		
+	
+	public Student getStuInfo(int stuId);
+	
+	public void stuDel(int stuId);
+	
+	public  List<Student> getSearchResult(@Param(value="name")String name,@Param(value="cardID")String cardID);
+	
+
 
 
 
