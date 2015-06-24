@@ -11,6 +11,7 @@ import java.util.*;
 
 import javax.servlet.http.*;
 
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -112,9 +113,12 @@ public class MainController{
 		}*/
 		
 		//接收读卡器参数
-		@RequestMapping(value="att.do",method=RequestMethod.POST)
-		 public void getAttSign(HttpServletResponse response) throws IOException {
+		@RequestMapping(value="att.do",method=RequestMethod.GET)
+		 public void getAttSign(HttpServletResponse response, HttpServletRequest req) throws IOException {
 			response.setCharacterEncoding("utf-8");
+			String idCard = req.getParameter("idCard");
+			AttService as = new AttService();
+			System.out.println("int: " + as.attStudent(idCard));
 			PrintWriter pw= response.getWriter();
 			pw.write("1;成功");
 			pw.close();

@@ -49,6 +49,13 @@
 	<update id="updateMsg">
      update msg set msg=#{msg} where id=1
      </update>
+     
+     
+     <!-- 打卡开始 -->
+     <insert id="attRaw" parameterType="String">
+     	INSERT INTO attinfo (cardID,name) VALUES (#{cardID},(SELECT name FROM stuinfo WHERE cardID = #{cardID}))
+     </insert>
+     <!-- 打卡结束 -->
 	
 	<!-- 
 		
