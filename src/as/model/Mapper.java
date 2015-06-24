@@ -26,6 +26,8 @@ public interface Mapper {
 	
 	public String getMsg();
 	
+	public void updateMsg(String msg);
+	
 
 
 

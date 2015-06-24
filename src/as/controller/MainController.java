@@ -129,10 +129,9 @@ public class MainController{
 		}
 		//短信编辑
 		@RequestMapping("msgUpdate.do")
-		public String msgupdate(@RequestBody String msg){
-			
-			System.out.println(msg);
-		//	System.out.println(java.net.URLDecoder.decode(msg,"UTF-8"));
+		public String msgupdate(@RequestBody Msg[] msg){
+			MsgService ms = new MsgService();
+			ms.updateMsg(msg[0].getMsg());
 			return "msg";
 		}
 			

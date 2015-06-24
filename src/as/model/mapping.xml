@@ -46,16 +46,15 @@
 	select msg from msg where id=1
 	</select>
 	
+	<update id="updateMsg">
+     update msg set msg=#{msg} where id=1
+     </update>
+	
 	<!-- 
 		
 	<insert id="stuDel" parameterType="int">
 	insert into stuinfo (name) values (#{stuId})
   </insert>
-    
-   
-   <update id="cardCheck">
-     update cardinfo set imgUrl=#{imgUrl} where articleId=#{articleId}
-   </update>
    -->
 </mapper>
 

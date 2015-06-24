@@ -18,5 +18,17 @@ public class MsgDAO {
 			session.close();
 		}
 	}
+	
+	//跟新短信内容
+	public void updateMsg(String msg) {
+		SqlSession session = Helper.getSessionFactory().openSession();
+		try {
+			Mapper mapper = session.getMapper(Mapper.class);
+			mapper.updateMsg(msg);
+			session.commit();
+		}finally {
+			session.close();
+		}
+	}
 
 }

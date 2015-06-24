@@ -65,14 +65,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		 var l = str.indexOf("%");
 	     var before = str.substr(0, l);
 	     var after = str.substr(l+1,str.length);
-	     str = {"msg":before+after};
-	    // str=before+after;
-	    
-	    var jsonStr = {
-	    		  "msg":encodeURI(str)  //这是中文需要编码，不然会是乱码
-	    		    
-	    		 } ; 
-	    
+	     str = [{"msg":before+after}];
+	    	    
 	     $.ajax({
 				url : "msgUpdate.do",
 				type : "post",
