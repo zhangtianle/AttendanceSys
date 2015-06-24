@@ -63,7 +63,7 @@ public class MainController{
 		}
 	
 		//跳转到更新学生界面
-		@RequestMapping("gtupdate.do")
+		@RequestMapping("gtupdateStu.do")
 		public String gtstuUpdate(String stuId,Model model){
 			StuService ss = new StuService();
 			model.addAttribute("stu",ss.getStuInfo(stuId));
@@ -71,9 +71,10 @@ public class MainController{
 		}
 		
 		//更新学生信息
-		@RequestMapping("update.do")
-		public String stuUpdate(){
-			return "updateStu";
+		@RequestMapping(value="updateStu.do",method=RequestMethod.POST)
+		public void stuUpdate(@RequestBody Student s){
+			StuService ss = new StuService();
+			ss.updateStu(s);
 		}
 		
 		//删除一个学生
@@ -88,7 +89,6 @@ public class MainController{
 		@RequestMapping("dels.do")
 		
 		public String stusDel(@RequestBody Student[] stus){
-			
 			StuService ss = new StuService();
 			ss.stusDel(stus);
 			return "stulist";
@@ -96,8 +96,16 @@ public class MainController{
 		
 		
 		//跳转到添加学生页面
+		@RequestMapping("gtaddStu.do")
 		public String gtaddStu(){
-			
+			return "addStu";
+		}
+		
+		//提交添加请求
+		@RequestMapping("addStu.do")
+		public String addStu(@RequestBody Student s){
+			StuService ss = new StuService();
+			ss.addStu(s);
 			return "addStu";
 		}
 		

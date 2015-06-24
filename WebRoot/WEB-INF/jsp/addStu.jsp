@@ -19,41 +19,72 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
+	<script type="text/javascript"
+		src="js/jquery-easyui-1.4.2/jquery.min.js"></script>
+<script type="text/javascript"
+	src="js/jquery-easyui-1.4.2/jquery.easyui.min.js"></script>
 
   </head>
   
   <body>
-<form >
+<form id="form1" >
     <table >
     <tr>
-    <td>姓名：</td><td><input type="text" id="name" value="" /></td>
+    
+    <td>姓名：</td><td><input type="text" name="name" /></td>
     </tr>
     <tr>
-    <td>卡号:</td><td><input type="text" id="name" value="" /></td>
+    <td>卡号:</td><td><input type="text" name="cardID"  /></td>
     </tr>
     <tr>
-    <td> 联系电话: </td><td><input type="text" id="name" value="" /></td>
+    <td> 联系电话: </td><td><input type="text" name="phone"  /></td>
     </tr>
-	<input type="hidden" id="id" value="" />
+    <tr>
+     <td>
+	<input type="hidden" name="id" />
+	 </td>
+	</tr>
     </table>
-    <input type="button" value="修改" id="submit" onclick="return upcfm()"/>
-    <input type="button" value="返回" id="back"   onclick="return back()"/>
-    </form>
+    <input type="button" value="添加" id="tj" onclick=" return upcfm()"/>
+   
+    <input type="button" name="button1" id="button1" value="返回" onclick="history.go(-1)"/>
+</form>
   </body>
   
   <script type="text/javascript">
   function upcfm() {
-	if (!confirm("确认要删除？")) {
-        //window.event.returnValue = false;
-        return false;
-    } 
-	window.location.href = 'update.do';
+	var student = {};
+	var form = document.getElementById("form1");
+	student.id = form.id.value;
+	student.name = form.name.value;
+	student.cardID = form.cardID.value;
+	student.phone = form.phone.value;
 	
+	
+	if (form.name.value ==null||form.name.value=="")
+	  {alert("姓名不能为空");return false}
+	if (form.cardID.value ==null||form.cardID.value=="")
+	  {alert("卡号不能为空");return false}
+	if (form.phone.value ==null||form.phone.value=="")
+	  {alert("电话不能为空");return false}
+	
+	$.ajax({
+
+		// 请求到某个servlet或者其它
+		url : "addStu.do",
+		// 传送的方式
+		type : "post",
+		// 传送数据
+		contentType : 'application/json',
+		data : JSON.stringify(student),
+		success : function() {
+			alert("添加成功");
+		}
+	});
+	
+		    	
 }
   
-  function back() {
-	window.location.href = document.referrer;
 
-}
 </script>
 </html>

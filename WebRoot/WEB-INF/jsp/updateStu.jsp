@@ -19,27 +19,36 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
+	<script type="text/javascript"
+		src="js/jquery-easyui-1.4.2/jquery.min.js"></script>
+<script type="text/javascript"
+	src="js/jquery-easyui-1.4.2/jquery.easyui.min.js"></script>
 
   </head>
   
   <body>
-<form >
+<form id="form1" >
     <table >
     <tr>
-    <td>姓名：</td><td><input type="text" id="name" value="${stu.name}" /></td>
+    
+    <td>姓名：</td><td><input type="text" name="name" value="${stu.name}" /></td>
     </tr>
     <tr>
-    <td>卡号:</td><td><input type="text" id="name" value="${stu.cardID}" /></td>
+    <td>卡号:</td><td><input type="text" name="cardID" value="${stu.cardID}" /></td>
     </tr>
     <tr>
-    <td> 联系电话: </td><td><input type="text" id="name" value="${stu.phone}" /></td>
+    <td> 联系电话: </td><td><input type="text" name="phone" value="${stu.phone}" /></td>
     </tr>
-	<input type="hidden" id="id" value="${stu.id}" />
+    <tr>
+     <td>
+	<input type="hidden" name="id" value="${stu.id}" />
+	 </td>
+	</tr>
     </table>
-    <input type="button" value="修改" id="submit" onclick="return upcfm()"/>
+    <input type="button" value="修改" id="tj" onclick=" return upcfm()"/>
    
-    <input type="button" name="button1" id="button1" value="返回" onclick="history.go(-1)">
-    </form>
+    <input type="button" name="button1" id="button1" value="返回" onclick="history.go(-1)"/>
+</form>
   </body>
   
   <script type="text/javascript">
@@ -47,12 +56,37 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	if (!confirm("确认要更新？")) {
         //window.event.returnValue = false;
         return false;
-    } 
-	window.location.href = 'update.do';
+    }
+	
+	var student = {};
+	var form = document.getElementById("form1");
+	student.id = form.id.value;
+	student.name = form.name.value;
+	student.cardID = form.cardID.value;
+	student.phone = form.phone.value;
+	
+	
+	$.ajax({
+
+		// 请求到某个servlet或者其它
+		url : "updateStu.do",
+		// 传送的方式
+		type : "post",
+		// 传送数据
+		//dataType : 'json',
+		contentType : 'application/json',
+		data : JSON.stringify(student),
+		success : function() {
+			alert("修改成功");
+			 
+		}
+	});
+	
+		     
+	 
 	
 }
   
 
-}
 </script>
 </html>

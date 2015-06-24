@@ -70,7 +70,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	     $.ajax({
 				url : "msgUpdate.do",
 				type : "post",
-				dataType : 'json',
 				contentType : 'application/json',
 				data : JSON.stringify(str),
 				//data:str,

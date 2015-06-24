@@ -27,7 +27,7 @@ public class StuService {
 			Student stu = (Student)it.next();
 			map.put("name",stu.getName());
 			map.put("cardID",stu.getCardID());
-			map.put("op", "<a href=\"gtupdate.do?stuId="+stu.getId()+ "\">修改</a>"
+			map.put("op", "<a href=\"gtupdateStu.do?stuId="+stu.getId()+ "\">修改</a>"
 			       +"&nbsp;&nbsp;<a href=\"del.do?stuId="+stu.getId()+ " \" onclick=\"return delcfm();\">删除</a>");
 			rows.add(map);
 		}
@@ -52,7 +52,7 @@ public class StuService {
 			Student stu = (Student)it.next();
 			map.put("name",stu.getName());
 			map.put("cardID",stu.getCardID());
-			map.put("op", "<a href=\"gtupdate.do?stuId="+stu.getId()+ "\">修改</a>"
+			map.put("op", "<a href=\"gtupdateStu.do?stuId="+stu.getId()+ "\">修改</a>"
 			       +"&nbsp;&nbsp;<a href=\"del.do?stuId="+stu.getId()+ " \" onclick=\"return delcfm();\">删除</a>");
 			rows.add(map);
 			total++;
@@ -85,9 +85,20 @@ public class StuService {
 
 	//批量删除
 	public void stusDel(Student[] stus) {
-		StuDAO s = new StuDAO();
 		for(Student stu:stus){
 			stuDel(stu.getId());		
 		}
+	}
+	
+	//更新学生信息
+	public void updateStu(Student s) {
+		StuDAO sd = new StuDAO();
+		sd.updateStu(s.getId(),s.getName(),s.getCardID(),s.getPhone());	
+	}
+	
+	//添加学生
+	public void addStu(Student s) {
+		StuDAO sd = new StuDAO();
+		sd.addStu(s.getName(),s.getCardID(),s.getPhone());	
 	}
 }

@@ -21,8 +21,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	-->
 
   </head>
+ 
   
   <body>
+  <form action="#" method="post">
+   <input type="text" name="2"/>
+        <input type="submit" value="ss" />
+        </form>
+        
     This is my JSP page. <br>
   </body>
 </html>

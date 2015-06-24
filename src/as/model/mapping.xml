@@ -40,16 +40,26 @@
 	  </if>
 	  </where> 
 	
-		</select>
+</select>
 	<!-- 获取短信内容 -->
 	<select id="getMsg" resultType="String">
 	select msg from msg where id=1
 	</select>
-	
+
+	<!-- 更新短信内容 -->	
 	<update id="updateMsg">
      update msg set msg=#{msg} where id=1
      </update>
 	
+	<!-- 更新学生内容 -->	
+	<update id="updateStu">
+     update stuinfo set name=#{name},cardID=#{cardID},phone=#{phone} where id=#{id}
+     </update>
+     
+     <insert id="addStu">
+     insert into stuinfo(name,cardID,phone) values(#{name},#{cardID},#{phone})
+     </insert>
+    
 	<!-- 
 		
 	<insert id="stuDel" parameterType="int">
