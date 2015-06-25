@@ -113,14 +113,27 @@ public class MainController{
 		}*/
 		
 		//接收读卡器参数
-		@RequestMapping(value="att.do",method=RequestMethod.GET)
+		@RequestMapping(value="att.do",method=RequestMethod.POST)
 		 public void getAttSign(HttpServletResponse response, HttpServletRequest req) throws IOException {
 			response.setCharacterEncoding("utf-8");
-			String idCard = req.getParameter("idCard");
-			AttService as = new AttService();
-			System.out.println("int: " + as.attStudent(idCard));
 			PrintWriter pw= response.getWriter();
-			pw.write("1;成功");
+			
+			String cardID = req.getParameter("cardId");
+			String sInterId = req.getParameter("interId");
+//			int interId = Integer.parseInt(sInterId);
+			
+			AttService as = new AttService();
+			String name = as.attGetName(cardID);
+			
+			System.out.println("name: " + name);
+			
+			if(name != null && !name.equals("")) {
+				System.out.println("int: " + as.attStudent(cardID,sInterId,name));
+				pw.write("1;" + name);
+			} else {
+				pw.write("2");
+			}
+			pw.flush();
 			pw.close();
 		}
 		
