@@ -104,7 +104,7 @@ $(function() {
 		<div data-options="region:'south',split:false" style="height:50px;text-align:center"  >
 		<P>
 			Copy Right@2015  睿廓思工作室
-		</P>
+		</P> 
 		</div>	
 		
 </body>

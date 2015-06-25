@@ -109,15 +109,18 @@ public class MainController{
 			return "addStu";
 		}
 		
-		/*@RequestMapping("att.do")
+		//求求打卡信息
+		@RequestMapping("getattInfo.do")
 		@ResponseBody
-		public String test(@RequestBody String interId,@RequestBody String cardId){
-			System.out.println(interId);
-			System.out.println(cardId);
-			String str = "1;成功";
-		    //new String(str,)
-			return str;
-		}*/
+		public Map<Object, Object> getAttinfo(String page,String rows,
+				@RequestParam(value="name", defaultValue="")String name,
+				@RequestParam(value="cardID", defaultValue="")String cardID) {
+			StuService ss = new StuService();
+			if(!name.equals("") || !cardID.equals("")) {
+				return ss.getSearchResult(name,cardID);
+			}
+			return ss.getStulist(page,rows);
+		}
 		
 		//接收读卡器参数
 		@RequestMapping(value="att.do",method=RequestMethod.POST)

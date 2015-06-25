@@ -54,7 +54,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   $(function(){
 	    
 	    $('#dg').datagrid({
-	        url:'getstuinfo.do',
+	        url:'getattinfo.do',
 	        pagination: true,
 	        rownumbers: true,
 	        pageNumber:1,

@@ -23,7 +23,7 @@ public class StuDAO {
 		}
 	}
 
-	//获取未注销的学生总数
+	//获取学生总数
 	public int getTotalNum(){
 		
 		SqlSession session = Helper.getSessionFactory().openSession();
