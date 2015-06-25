@@ -20,6 +20,10 @@ public interface Mapper {
 	
 	public Student getStuInfo(int stuId);
 	
+	public String getStuName(String cardID);
+	
+	public int attRaw(@Param("cardID")String cardID, @Param("interId")String interId, @Param("name")String name);
+	
 	public void stuDel(int stuId);
 	
 	public  List<Student> getSearchResult(@Param(value="name")String name,@Param(value="cardID")String cardID);

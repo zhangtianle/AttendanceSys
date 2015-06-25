@@ -23,6 +23,11 @@
     <select id="getStuInfo"   resultType="as.model.Student">
       select * from stuinfo where id=#{stuId} 
     </select>
+    
+      <!-- 获取学生信息-->
+    <select id="getStuName"   resultType="String">
+      select name from stuinfo where cardID=#{cardID} 
+    </select>
   
   	<!-- 删除 -->
     <delete id="stuDel">
@@ -50,6 +55,13 @@
 	<update id="updateMsg">
      update msg set msg=#{msg} where id=1
      </update>
+     
+     
+     <!-- 打卡开始 -->
+     <insert id="attRaw">
+     	INSERT INTO attinfo (cardID,interId,name) VALUES (#{cardID},#{interId},(SELECT name from stuinfo WHERE cardID = #{cardID}))
+     </insert>
+     <!-- 打卡结束 -->
 	
 	<!-- 更新学生内容 -->	
 	<update id="updateStu">

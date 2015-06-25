@@ -60,4 +60,14 @@ public class AttService {
 			return m;
 		}
 
+
+	
+	public String attGetName(String cardID) {
+		return new AttDAO().attStudentName(cardID);
+	}
+	
+	public int attStudent(String cardID,String interId,String name) {
+		return new AttDAO().attRaw(cardID,interId,name);
+	}
+
 }
