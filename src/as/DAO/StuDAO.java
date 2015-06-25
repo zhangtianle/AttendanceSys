@@ -61,6 +61,7 @@ public class StuDAO {
 		
 	}
 	
+	//返回搜索结果
 	public  List<Student> getSearchResult(String name,String cardID){
 		SqlSession session = Helper.getSessionFactory().openSession();
 		try {
@@ -71,6 +72,29 @@ public class StuDAO {
 		}
 	}
 
+	//更新学生信息
+	
+	public void updateStu(String id,String name,String cardID,String phone){
+		SqlSession session = Helper.getSessionFactory().openSession();
+		try {
+			Mapper mapper = session.getMapper(Mapper.class);
+			mapper.updateStu(id,name,cardID,phone);
+			session.commit();
+		}finally {
+			session.close();
+		}
+	}
+	
+	public void addStu(String name,String cardID,String phone){
+		SqlSession session = Helper.getSessionFactory().openSession();
+		try {
+			Mapper mapper = session.getMapper(Mapper.class);
+			mapper.addStu(name,cardID,phone);
+			session.commit();
+		}finally {
+			session.close();
+		}
+	}
 }
 
 	

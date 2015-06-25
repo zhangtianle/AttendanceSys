@@ -19,7 +19,7 @@ public class MsgDAO {
 		}
 	}
 	
-	//跟新短信内容
+	//更新短信内容
 	public void updateMsg(String msg) {
 		SqlSession session = Helper.getSessionFactory().openSession();
 		try {
