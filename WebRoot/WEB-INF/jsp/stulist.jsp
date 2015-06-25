@@ -51,6 +51,7 @@
   <table id="dg"  style="width:100%;height:100%" data-options="method:'get',toolbar:'#tb'"></table>	
   
  </body>
+ 
 	  <script type="text/javascript">
       
   $(function(){
@@ -143,11 +144,9 @@
 
 		}
 
-<<<<<<< HEAD
-			}
-		});
+		
 				
- }
+
       
   function doSearch(){
   	$('#dg').datagrid('load',{
@@ -159,18 +158,6 @@
   
  </script>
   
-	
   
-=======
-		function doSearch() {
-			$('#dg').datagrid('load', {
-				name : $('#name').val(),
-				cardID : $('#cardID').val()
-			});
-		}
-	</script>
 
-
-</body>
->>>>>>> d07cc25ff53a392cd1bd656487d844166fcef0f3
 </html>

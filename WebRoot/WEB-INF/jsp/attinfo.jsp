@@ -36,11 +36,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <body style="width:100%;height:98%;margin:0;padding:1px">
 	
 	<div id="tb" style="height:auto;margin:0";background-color:"#CCC">
+	<!--  
 		<a href="addStu.do" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true" >新增学生</a>
 		<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true" onclick="return delscfm()">删除</a>
+		-->
 		  <div id="search" style="padding:2px;font-size:12px;">
     	<span>学生姓名:</span><input id="name" style="line-height:20px;border:1px solid #ccc">&nbsp;&nbsp;&nbsp;&nbsp;
-    	<span>卡号:</span><input id="cardID" style="line-height:20px;border:1px solid #ccc">
+    	<span>卡号:</span><input id="cardID" style="line-height:20px;border:1px solid #ccc">&nbsp;&nbsp;&nbsp;&nbsp;
+    	<span>网点号:</span><input id="interId" style="line-height:20px;border:1px solid #ccc">
     	<a href="javascript:void(0)" class="easyui-linkbutton" class="easyui-linkbutton" iconCls="icon-search" onclick="doSearch()">Search</a>
     	
     	            
@@ -54,18 +57,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   $(function(){
 	    
 	    $('#dg').datagrid({
-	        url:'getattinfo.do',
+	        url:'getattInfo.do',
 	        pagination: true,
 	        rownumbers: true,
 	        pageNumber:1,
 	        columns: [[
-					  { field:'ck',checkbox:true},
 	                   { field: 'name', title: '姓名', width: 100,align:'center'},
 	                   { field: 'cardID', title: '卡号', width: 100,align:'center'},
-	                   { field: 'op', title: '操作', width: 100,align:'center'},
+	                   { field: 'time', title: '打卡时间', width: 100,align:'center'},
+	                   { field: 'interId', title: '打卡网点', width: 100,align:'center'},
 	                  ]], 
-	        pageSize:10,
-	        pageList: [5,10,15,20],
+	        pageSize:50,
+	        pageList: [10,20,30,50],
 	        singleSelect:false,  //支持多选
 	        
 	        /*rowStyler:function(index){
@@ -89,7 +92,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
  
  
   })
-  
+  /*
  function delcfm() {
       if (!confirm("确认要删除？")) {
           window.event.returnValue = false;
@@ -142,12 +145,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			}
 		});
 				
- }
+ }*/
       
   function doSearch(){
   	$('#dg').datagrid('load',{
   		name: $('#name').val(),
-  		cardID: $('#cardID').val()
+  		cardID: $('#cardID').val(),
+  		interId:$('#interId').val()
   	});
   }
   

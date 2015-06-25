@@ -33,6 +33,7 @@
     <delete id="stuDel">
 	  delete from stuinfo where id = #{stuId}
 	</delete>
+	
 	<!-- 搜索结果 -->
 	<select id="getSearchResult" resultType="as.model.Student">
 	  select * from stuinfo 
@@ -72,11 +73,38 @@
      insert into stuinfo(name,cardID,phone) values(#{name},#{cardID},#{phone})
      </insert>
     
+    <!-- 获取打卡记录总数 -->
+    <select id="getAttTotalNum" resultType="int">
+    select count(*) from attinfo
+    </select>
+    
+      <!-- 获取范围内打卡名单 -->
+    <select id="getAttinfo"  resultType="as.model.Attinfo">
+      select * from attinfo limit #{begin},#{num}
+    </select>
+    
 	<!-- 
 		
 	<insert id="stuDel" parameterType="int">
 	insert into stuinfo (name) values (#{stuId})
   </insert>
    -->
+   
+   <select id="getAttSearchResult" resultType="as.model.Attinfo">
+	  select * from attinfo 
+	  <where>
+	  <if test="name != null">
+	  name like  CONCAT('%',#{name},'%') 
+	  </if>
+	  <if test="cardID != null">
+	  and cardID like CONCAT('%',#{cardID},'%') 
+	  </if>
+	  <if test="interId != null">
+	  and interId = #{interId} 
+	  </if>
+	  </where> 
+	
+</select>
+   
 </mapper>
 

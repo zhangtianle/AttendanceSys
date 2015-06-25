@@ -109,17 +109,23 @@ public class MainController{
 			return "addStu";
 		}
 		
-		//求求打卡信息
+		@RequestMapping("gtattinfo.do")
+		public String gtAttinfo(){
+			return "attinfo";
+		}
+		
+		//请求打卡信息
 		@RequestMapping("getattInfo.do")
 		@ResponseBody
 		public Map<Object, Object> getAttinfo(String page,String rows,
 				@RequestParam(value="name", defaultValue="")String name,
-				@RequestParam(value="cardID", defaultValue="")String cardID) {
-			StuService ss = new StuService();
-			if(!name.equals("") || !cardID.equals("")) {
-				return ss.getSearchResult(name,cardID);
+				@RequestParam(value="cardID", defaultValue="")String cardID,
+				@RequestParam(value="interId", defaultValue="")String interId) {
+			AttService as = new AttService();
+			if(!name.equals("") || !cardID.equals("")||!interId.equals("")) {
+				return as.getSearchResult(name,cardID,interId);
 			}
-			return ss.getStulist(page,rows);
+			return as.getStulist(page,rows);
 		}
 		
 		//接收读卡器参数
@@ -130,7 +136,6 @@ public class MainController{
 			
 			String cardID = req.getParameter("cardId");
 			String sInterId = req.getParameter("interId");
-//			int interId = Integer.parseInt(sInterId);
 			
 			AttService as = new AttService();
 			String name = as.attGetName(cardID);
@@ -162,13 +167,5 @@ public class MainController{
 			return "msg";
 		}
 			
-	//	}
-//		
-//		//打卡信息
-//		@RequestMapping("attinfo.do")
-//		public String getAttInfo(){
-//			System.out.println("att");
-//			StuService ss = new StuService();
-//			return "MyJsp";
-//		}
+
 }

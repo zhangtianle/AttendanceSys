@@ -38,6 +38,12 @@ public interface Mapper {
 	public void addStu(@Param(value="name")String name,
 			@Param(value="cardID")String cardID,@Param(value="phone")String phone);
 	
+	public int getAttTotalNum();
+	
+	public List<Attinfo> getAttinfo(@Param(value="begin") int begin,@Param(value="num") int num);
+	
+	public List<Attinfo> getAttSearchResult(@Param(value="name")String name,@Param(value="cardID")String cardID, @Param(value="interId")String interId);
+	
 
 
 

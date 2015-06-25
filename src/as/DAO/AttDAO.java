@@ -5,20 +5,18 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
-import as.model.Mapper;
-import as.model.Student;
-
+import as.model.*;
 import as.tools.Helper;
 
 public class AttDAO {
 	
 	//获取范围内的学生列表（name cardID）
-		public List<Student> getSutlist(int begin,int num){
+		public List<Attinfo> getAttinfo(int begin,int num){
 			SqlSession session = Helper.getSessionFactory().openSession();
 			try {
 				Mapper mapper = session.getMapper(Mapper.class);
 			
-			return mapper.getStulist(begin,num);
+			return mapper.getAttinfo(begin,num);
 			}finally {
 				session.close();
 			}
@@ -30,12 +28,25 @@ public class AttDAO {
 			SqlSession session = Helper.getSessionFactory().openSession();
 			try {
 				Mapper mapper = session.getMapper(Mapper.class);
-				return mapper.getTotalNum();
+				return mapper.getAttTotalNum();
 			}finally {
 				session.close();
 			}
 			
 		}
+		
+		//获取范围内的学生列表（name cardID InterId time）
+				public List<Attinfo> getAttSearchResult(String name,String cardID,String interId ){
+					SqlSession session = Helper.getSessionFactory().openSession();
+					try {
+						Mapper mapper = session.getMapper(Mapper.class);
+		
+						
+					return mapper.getAttSearchResult(name,cardID,interId);
+					}finally {
+						session.close();
+					}
+				}
 
 	
 	public String attStudentName(String cardID) {

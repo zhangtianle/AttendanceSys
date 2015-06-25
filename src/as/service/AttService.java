@@ -13,19 +13,19 @@ public class AttService {
 			int p = Integer.parseInt(page);
 			int r = Integer.parseInt(nrows);
 			int begin = (p-1)*r;
-			AttDAO s = new AttDAO();
-			int total = s.getTotalNum();
-			List<Student> l = s.getSutlist(begin,r);
+			AttDAO a = new AttDAO();
+			int total = a.getTotalNum();
+			List<Attinfo> l = a.getAttinfo(begin,r);
 			Map<Object, Object> m = new HashMap<Object, Object>();
 			ArrayList rows = new ArrayList();
 			Iterator it = l.iterator();
 			while(it.hasNext()){
 				Map<Object, Object> map = new HashMap<Object, Object>();
-				Student stu = (Student)it.next();
-				map.put("name",stu.getName());
-				map.put("cardID",stu.getCardID());
-				map.put("op", "<a href=\"gtupdateStu.do?stuId="+stu.getId()+ "\">修改</a>"
-				       +"&nbsp;&nbsp;<a href=\"del.do?stuId="+stu.getId()+ " \" onclick=\"return delcfm();\">删除</a>");
+				Attinfo ai = (Attinfo)it.next();
+				map.put("name",ai.getName());
+				map.put("cardID",ai.getCardID());
+				map.put("time", ai.getTime());
+				map.put("interId", ai.getInterId());
 				rows.add(map);
 			}
 			m.put("total",total);
@@ -35,23 +35,24 @@ public class AttService {
 		
 		
 		//返回查询信息 
-		public Map<Object, Object> getSearchResult(String name,String cardID) {
+		public Map<Object, Object> getSearchResult(String name,String cardID,String interId) {
 			
-			StuDAO s = new StuDAO();
+			AttDAO a = new AttDAO();
 			int total = 0;
 			if(name.equals("")) name=null;
 			if(cardID.equals("")) cardID=null;
-			List<Student> l = s.getSearchResult(name,cardID);
+			if(interId.equals("")) interId=null;
+			List<Attinfo> l = a.getAttSearchResult(name,cardID,interId);
 			Map<Object, Object> m = new HashMap<Object, Object>();
 			ArrayList rows = new ArrayList();
 			Iterator it = l.iterator();
 			while(it.hasNext()){
 				Map<Object, Object> map = new HashMap<Object, Object>();
-				Student stu = (Student)it.next();
-				map.put("name",stu.getName());
-				map.put("cardID",stu.getCardID());
-				map.put("op", "<a href=\"gtupdateStu.do?stuId="+stu.getId()+ "\">修改</a>"
-				       +"&nbsp;&nbsp;<a href=\"del.do?stuId="+stu.getId()+ " \" onclick=\"return delcfm();\">删除</a>");
+				Attinfo ai = (Attinfo)it.next();
+				map.put("name",ai.getName());
+				map.put("cardID",ai.getCardID());
+				map.put("time", ai.getTime());
+				map.put("interId", ai.getInterId());
 				rows.add(map);
 				total++;
 			}

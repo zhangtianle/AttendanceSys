@@ -44,7 +44,7 @@ $(function() {
         	   //switch tabs
         	   if(node.text=="考勤后台管理") return ;
         	   if(node.text=="学生信息管理") url="stulist";
-        	   if(node.text=="打卡信息管理") url="attinfo";
+        	   if(node.text=="打卡信息管理") url="gtattinfo";
         	   if(node.text=="短信编辑") url="msg";
         	   if(url=="") return;
         	    var content = '<iframe scrolling="auto" frameborder="0"  src="'+url+'.do" style="width:100%;height:100%;"></iframe>';    
