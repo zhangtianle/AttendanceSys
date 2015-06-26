@@ -64,7 +64,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		 str = b.value
 		 var l = str.indexOf("%");
 	     var before = str.substr(0, l);
-	     var after = str.substr(l+1,str.length);
+	     var after = str.substr(l,str.length);
 	     str = [{"msg":before+after}];
 	    	    
 	     $.ajax({

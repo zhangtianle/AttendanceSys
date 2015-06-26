@@ -1,6 +1,7 @@
 package as.DAO;
 
 
+import java.util.Date;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -79,4 +80,47 @@ public class AttDAO {
 		}
 
 	}
+	
+	
+	//获取打卡时间
+	public Stuarrive getAttTime(String cardID,java.sql.Date date){
+		SqlSession session = Helper.getSessionFactory().openSession();
+		try {
+			Mapper mapper = session.getMapper(Mapper.class);
+			Stuarrive s =mapper.getAttTime(cardID,date);
+			
+			
+			return s;
+		} finally {
+			session.close();
+		}
+		
+	}
+	
+	//插入打卡时间
+		public void insertAttTime(Stuarrive s){
+			SqlSession session = Helper.getSessionFactory().openSession();
+			try {
+				Mapper mapper = session.getMapper(Mapper.class);
+				mapper.insertAttTime(s);
+				session.commit();
+			} finally {
+				session.close();
+			}
+			
+		}
+	//更新打卡时间
+	public void setAttTime(Stuarrive s){
+		SqlSession session = Helper.getSessionFactory().openSession();
+		try {
+			Mapper mapper = session.getMapper(Mapper.class);
+			mapper.setAttTime(s);
+			session.commit();
+			
+		} finally {
+			session.close();
+		}
+		
+	}
+	
 }

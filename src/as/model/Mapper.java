@@ -1,5 +1,6 @@
 package as.model;
 
+import java.sql.Date;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
@@ -43,6 +44,12 @@ public interface Mapper {
 	public List<Attinfo> getAttinfo(@Param(value="begin") int begin,@Param(value="num") int num);
 	
 	public List<Attinfo> getAttSearchResult(@Param(value="name")String name,@Param(value="cardID")String cardID, @Param(value="interId")String interId);
+	
+	public Stuarrive getAttTime(@Param("cardID")String cardID,@Param("date")Date date);
+	
+	public void insertAttTime(Stuarrive s);
+	
+	public void setAttTime(Stuarrive s);
 	
 
 

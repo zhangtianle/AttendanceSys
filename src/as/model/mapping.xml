@@ -4,107 +4,121 @@
 
 <mapper namespace="as.model.Mapper">
 
-    <!-- 通过username获得密码 -->
-    <select id="getpwd" parameterType="String" resultType="String">
-      select password from user where username=#{username}
-    </select>
-    
-    <!-- 获取学生范围内名单 -->
-    <select id="getStulist"  resultType="as.model.Student">
-      select * from stuinfo limit #{begin},#{num}
-    </select>
-    
-    <!-- 获取学生总数-->
-    <select id="getTotalNum"  resultType="int">
-      select count(*) from stuinfo  
-    </select>
-
-    <!-- 获取学生信息-->
-    <select id="getStuInfo"   resultType="as.model.Student">
-      select * from stuinfo where id=#{stuId} 
-    </select>
-    
-      <!-- 获取学生信息-->
-    <select id="getStuName"   resultType="String">
-      select name from stuinfo where cardID=#{cardID} 
-    </select>
-  
-  	<!-- 删除 -->
-    <delete id="stuDel">
-	  delete from stuinfo where id = #{stuId}
-	</delete>
-	
-	<!-- 搜索结果 -->
-	<select id="getSearchResult" resultType="as.model.Student">
-	  select * from stuinfo 
-	  <where>
-	  <if test="name != null">
-	  name like  CONCAT('%',#{name},'%') 
-	  </if>
-	  <if test="cardID != null">
-	  and cardID like CONCAT('%',#{cardID},'%') 
-	  </if>
-	  </where> 
-	
-</select>
-	<!-- 获取短信内容 -->
-	<select id="getMsg" resultType="String">
-	select msg from msg where id=1
+	<!-- 通过username获得密码 -->
+	<select id="getpwd" parameterType="String" resultType="String">
+		select password from user where username=#{username}
 	</select>
 
-	<!-- 更新短信内容 -->	
+	<!-- 获取学生范围内名单 -->
+	<select id="getStulist" resultType="as.model.Student">
+		select * from stuinfo limit #{begin},#{num}
+	</select>
+
+	<!-- 获取学生总数 -->
+	<select id="getTotalNum" resultType="int">
+		select count(*) from stuinfo
+	</select>
+
+	<!-- 获取学生信息 -->
+	<select id="getStuInfo" resultType="as.model.Student">
+		select * from stuinfo where id=#{stuId}
+	</select>
+
+	<!-- 获取学生信息 -->
+	<select id="getStuName" resultType="String">
+		select name from stuinfo where cardID=#{cardID}
+	</select>
+
+	<!-- 删除 -->
+	<delete id="stuDel">
+		delete from stuinfo where id = #{stuId}
+	</delete>
+
+	<!-- 搜索结果 -->
+	<select id="getSearchResult" resultType="as.model.Student">
+		select * from stuinfo
+		<where>
+			<if test="name != null">
+				name like CONCAT('%',#{name},'%')
+			</if>
+			<if test="cardID != null">
+				and cardID like CONCAT('%',#{cardID},'%')
+			</if>
+		</where>
+	</select>
+
+	<!-- 获取短信内容 -->
+	<select id="getMsg" resultType="String">
+		select msg from msg where id=1
+	</select>
+
+	<!-- 更新短信内容 -->
 	<update id="updateMsg">
-     update msg set msg=#{msg} where id=1
-     </update>
-     
-     
-     <!-- 打卡开始 -->
-     <insert id="attRaw">
-     	INSERT INTO attinfo (cardID,interId,name) VALUES (#{cardID},#{interId},(SELECT name from stuinfo WHERE cardID = #{cardID}))
-     </insert>
-     <!-- 打卡结束 -->
-	
-	<!-- 更新学生内容 -->	
+		update msg set msg=#{msg} where id=1
+	</update>
+
+
+	<!-- 打卡开始 -->
+	<insert id="attRaw">
+		INSERT INTO attinfo (cardID,interId,name) VALUES
+		(#{cardID},#{interId},(SELECT name from stuinfo WHERE cardID =
+		#{cardID}))
+	</insert>
+	<!-- 打卡结束 -->
+
+	<!-- 更新学生内容 -->
 	<update id="updateStu">
-     update stuinfo set name=#{name},cardID=#{cardID},phone=#{phone} where id=#{id}
-     </update>
-     
-     <insert id="addStu">
-     insert into stuinfo(name,cardID,phone) values(#{name},#{cardID},#{phone})
-     </insert>
-    
-    <!-- 获取打卡记录总数 -->
-    <select id="getAttTotalNum" resultType="int">
-    select count(*) from attinfo
-    </select>
-    
-      <!-- 获取范围内打卡名单 -->
-    <select id="getAttinfo"  resultType="as.model.Attinfo">
-      select * from attinfo limit #{begin},#{num}
-    </select>
-    
-	<!-- 
-		
-	<insert id="stuDel" parameterType="int">
-	insert into stuinfo (name) values (#{stuId})
-  </insert>
-   -->
-   
-   <select id="getAttSearchResult" resultType="as.model.Attinfo">
-	  select * from attinfo 
-	  <where>
-	  <if test="name != null">
-	  name like  CONCAT('%',#{name},'%') 
-	  </if>
-	  <if test="cardID != null">
-	  and cardID like CONCAT('%',#{cardID},'%') 
-	  </if>
-	  <if test="interId != null">
-	  and interId = #{interId} 
-	  </if>
-	  </where> 
+		update stuinfo set name=#{name},cardID=#{cardID},phone=#{phone} where
+		id=#{id}
+	</update>
+
+	<insert id="addStu">
+		insert into stuinfo(name,cardID,phone) values(#{name},#{cardID},#{phone})
+	</insert>
+
+	<!-- 获取打卡记录总数 -->
+	<select id="getAttTotalNum" resultType="int">
+		select count(*) from attinfo
+	</select>
+
+	<!-- 获取范围内打卡名单 -->
+	<select id="getAttinfo" resultType="as.model.Attinfo">
+		select * from attinfo limit #{begin},#{num}
+	</select>
+
+	<!-- <insert id="stuDel" parameterType="int"> insert into stuinfo (name) 
+		values (#{stuId}) </insert> -->
+
+	<!-- 获取打卡信息 -->
+	<select id="getAttSearchResult" resultType="as.model.Attinfo">
+		select * from attinfo
+		<where>
+			<if test="name != null">
+				name like CONCAT('%',#{name},'%')
+			</if>
+			<if test="cardID != null">
+				and cardID like CONCAT('%',#{cardID},'%')
+			</if>
+			<if test="interId != null">
+				and interId = #{interId}
+			</if>
+		</where>
+	</select>
 	
-</select>
-   
+
+	<!-- 获取学时打卡信息 -->
+	<select id="getAttTime" resultType="as.model.Stuarrive">
+		select * from stuarrive where adate=#{date} AND cardID=#{cardID} limit 0,1
+	</select>
+
+<insert parameterType="as.model.Stuarrive" id="insertAttTime">
+		insert into stuarrive(name,cardID,marrive,mleave,aarrive,aleave,adate)
+        values   (#{name},#{cardID},#{marrive},#{mleave},#{aarrive},#{aleave},#{adate})
+</insert>
+
+ <update id="setAttTime" parameterType="as.model.Stuarrive" >
+ update stuarrive
+ set name = #{name},cardID=#{cardID},marrive=#{marrive},mleave=#{mleave},aarrive=#{aarrive},aleave=#{aleave},adate=#{adate}
+ </update>
 </mapper>
 

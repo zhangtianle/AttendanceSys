@@ -16,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import as.service.*;
+import as.DAO.AttDAO;
 import as.model.*;
 
 
@@ -144,7 +145,12 @@ public class MainController{
 			
 			if(name != null && !name.equals("")) {
 				System.out.println("int: " + as.attStudent(cardID,sInterId,name));
-				pw.write("1;" + name);
+				
+				boolean f = as.setStuarriveInfo(cardID,name);
+				if(f){
+					pw.write("1;" + name);
+				}
+				pw.write("2");
 			} else {
 				pw.write("2");
 			}
@@ -166,6 +172,13 @@ public class MainController{
 			ms.updateMsg(msg[0].getMsg());
 			return "msg";
 		}
-			
+		
+		@RequestMapping("test.do")
+		public void  test() {
+			AttService as = new AttService();
+			as.setStuarriveInfo("0008491570","多胖");
+		}
+		
+	
 
 }
