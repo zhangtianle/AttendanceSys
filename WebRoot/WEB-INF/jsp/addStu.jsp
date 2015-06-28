@@ -31,19 +31,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <table >
     <tr>
     
-    <td>姓名：</td><td><input type="text" name="name" /></td>
-    </tr>
-    <tr>
-    <td>卡号:</td><td><input type="text" name="cardID"  /></td>
-    </tr>
-    <tr>
-    <td> 联系电话: </td><td><input type="text" name="phone"  /></td>
-    </tr>
-    <tr>
-     <td>
-	<input type="hidden" name="id" />
-	 </td>
-	</tr>
+    `
     </table>
     <input type="button" value="添加" id="tj" onclick=" return upcfm()"/>
    
@@ -59,14 +47,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	student.name = form.name.value;
 	student.cardID = form.cardID.value;
 	student.phone = form.phone.value;
+	student.pname = form.pname.value;
+	student.period = form.period.value;
 	
 	
 	if (form.name.value ==null||form.name.value=="")
 	  {alert("姓名不能为空");return false}
 	if (form.cardID.value ==null||form.cardID.value=="")
 	  {alert("卡号不能为空");return false}
+	if (form.pname.value ==null||form.pname.value=="")
+	  {alert("家长姓名不能为空");return false}
 	if (form.phone.value ==null||form.phone.value=="")
 	  {alert("电话不能为空");return false}
+	if (form.period.value ==null||form.period.value=="")
+	  {alert("剩余学时不能为空");return false}
 	
 	$.ajax({
 

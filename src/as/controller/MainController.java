@@ -88,7 +88,6 @@ public class MainController{
 		
 		//批量删除学生
 		@RequestMapping("dels.do")
-		
 		public String stusDel(@RequestBody Student[] stus){
 			StuService ss = new StuService();
 			ss.stusDel(stus);

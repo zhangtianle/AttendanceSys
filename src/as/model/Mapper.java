@@ -33,8 +33,7 @@ public interface Mapper {
 	
 	public void updateMsg(String msg);
 	
-	public void updateStu(@Param(value="id")String id,@Param(value="name")String name,
-			@Param(value="cardID")String cardID,@Param(value="phone")String phone);
+	public void updateStu(Student s);
 	
 	public void addStu(@Param(value="name")String name,
 			@Param(value="cardID")String cardID,@Param(value="phone")String phone);

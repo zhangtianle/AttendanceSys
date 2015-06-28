@@ -23,10 +23,14 @@ public class StuService {
 		ArrayList rows = new ArrayList();
 		Iterator it = l.iterator();
 		while(it.hasNext()){
+			//学生姓名 剩余学时 家长姓名 家长联系电话 学生打卡的卡号
 			Map<Object, Object> map = new HashMap<Object, Object>();
 			Student stu = (Student)it.next();
 			map.put("name",stu.getName());
 			map.put("cardID",stu.getCardID());
+			map.put("pname",stu.getPname());
+			map.put("phone",stu.getPhone());
+			map.put("period", stu.getPeriod());
 			map.put("op", "<a href=\"gtupdateStu.do?stuId="+stu.getId()+ "\">修改</a>"
 			       +"&nbsp;&nbsp;<a href=\"del.do?stuId="+stu.getId()+ " \" onclick=\"return delcfm();\">删除</a>");
 			rows.add(map);
@@ -52,6 +56,9 @@ public class StuService {
 			Student stu = (Student)it.next();
 			map.put("name",stu.getName());
 			map.put("cardID",stu.getCardID());
+			map.put("pname",stu.getPname());
+			map.put("phone",stu.getPhone());
+			map.put("period", stu.getPeriod());
 			map.put("op", "<a href=\"gtupdateStu.do?stuId="+stu.getId()+ "\">修改</a>"
 			       +"&nbsp;&nbsp;<a href=\"del.do?stuId="+stu.getId()+ " \" onclick=\"return delcfm();\">删除</a>");
 			rows.add(map);
@@ -72,6 +79,8 @@ public class StuService {
 		m.put("name", stu.getName());
 		m.put("cardID", stu.getCardID());
 		m.put("phone", stu.getPhone());
+		m.put("pname",stu.getPname());
+		m.put("period", stu.getPeriod());
 		return m;
 		
 	}
@@ -93,7 +102,8 @@ public class StuService {
 	//更新学生信息
 	public void updateStu(Student s) {
 		StuDAO sd = new StuDAO();
-		sd.updateStu(s.getId(),s.getName(),s.getCardID(),s.getPhone());	
+		//sd.updateStu(s.getId(),s.getName(),s.getCardID(),s.getPhone());
+		sd.updateStu(s);
 	}
 	
 	//添加学生

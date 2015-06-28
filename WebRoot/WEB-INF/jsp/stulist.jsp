@@ -38,7 +38,7 @@
 <body style="width:100%;height:98%;margin:0;padding:1px">
 
 	<div id="tb" style="height:auto;margin:0";background-color:"#CCC">
-		<a href="addStu.do" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true" >新增学生</a>
+		<a href="gtaddStu.do" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true" >新增学生</a>
 		<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true" onclick="return delscfm()">删除</a>
 		  <div id="search" style="padding:2px;font-size:12px;">
     	<span>学生姓名:</span><input id="name" style="line-height:20px;border:1px solid #ccc">&nbsp;&nbsp;&nbsp;&nbsp;
@@ -65,6 +65,9 @@
 					  { field:'ck',checkbox:true},
 	                   { field: 'name', title: '姓名', width: 100,align:'center'},
 	                   { field: 'cardID', title: '卡号', width: 100,align:'center'},
+	                   { field: 'pname', title: '家长姓名', width: 100,align:'center'},
+	                   { field: 'phone', title: '联系电话', width: 100,align:'center'},
+	                   { field: 'period', title: '剩余学时', width: 100,align:'center'},
 	                   { field: 'op', title: '操作', width: 100,align:'center'},
 	                  ]], 
 	        pageSize:10,

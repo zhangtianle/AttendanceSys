@@ -74,11 +74,11 @@ public class StuDAO {
 
 	//更新学生信息
 	
-	public void updateStu(String id,String name,String cardID,String phone){
+	public void updateStu(Student s){
 		SqlSession session = Helper.getSessionFactory().openSession();
 		try {
 			Mapper mapper = session.getMapper(Mapper.class);
-			mapper.updateStu(id,name,cardID,phone);
+			mapper.updateStu(s);
 			session.commit();
 		}finally {
 			session.close();
